@@ -8,11 +8,11 @@ DEPENDS += "bc-native dtc-native"
 SRCREV_FORMAT = "uboot_common_system"
 SRCREV_uboot = "3c99166441bf3ea325af2da83cfe65430b49c066"
 SRCREV_common = "cec2bbf71e92e5b1dc7b6a9374971d7a683a4526"
-SRCREV_system = "eacaa1513bcb430b5f616d8603c548658f17cdfb"
+SRCREV_system = "1b081d080c3ddef7bf17a5a87990dac54272223d"
 
 SRC_URI = "git://git.denx.de/u-boot.git;name=uboot \
-           gitsm://git@github.com:data-respons-solutions/uboot-common.git;branch=master;destsuffix=git/board/datarespons/common;name=common \
-           git://git@github.com:data-respons-solutions/uboot-vec6200.git;branch=master;destsuffix=git/board/datarespons/vec6200;name=system \
+           gitsm://git@github.com/data-respons-solutions/uboot-common.git;branch=master;destsuffix=git/board/datarespons/common;name=common \
+           git://git@github.com/data-respons-solutions/uboot-vec6200.git;branch=master;destsuffix=git/board/datarespons/vec6200;name=system \
            "
 
 LOCALVERSION = "+dr-0.1"
