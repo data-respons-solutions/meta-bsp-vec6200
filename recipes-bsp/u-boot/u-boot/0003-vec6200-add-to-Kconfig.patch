@@ -1,0 +1,36 @@
+From 7c553024f7767b6265cc1b84a1c299d7be1b2987 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Mikko=20Salom=C3=A4ki?= <ms@datarespons.se>
+Date: Tue, 31 Mar 2020 07:52:44 +0200
+Subject: [PATCH] vec6200: add to Kconfig
+
+---
+ arch/arm/mach-imx/mx6/Kconfig | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
+
+diff --git a/arch/arm/mach-imx/mx6/Kconfig b/arch/arm/mach-imx/mx6/Kconfig
+index e782859b1e..0051db595a 100644
+--- a/arch/arm/mach-imx/mx6/Kconfig
++++ b/arch/arm/mach-imx/mx6/Kconfig
+@@ -529,6 +529,15 @@ config TARGET_ZC5601
+ 	select DM_THERMAL
+ 	select SUPPORT_SPL
+ 	imply CMD_DM
++	
++config TARGET_VEC6200
++	bool "vec6200"
++	select MX6QDL
++	select BOARD_EARLY_INIT_F
++	select BOARD_LATE_INIT
++	select SUPPORT_SPL
++	select DM
++	select DM_THERMAL
+ 
+ endchoice
+ 
+@@ -586,5 +595,6 @@ source "board/udoo/Kconfig"
+ source "board/udoo/neo/Kconfig"
+ source "board/wandboard/Kconfig"
+ source "board/warp/Kconfig"
++source "board/datarespons/vec6200/Kconfig"
+ 
+ endif
