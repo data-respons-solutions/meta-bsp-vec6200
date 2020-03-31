@@ -1,0 +1,27 @@
+#!/bin/sh
+export PATH=/sbin:/bin:/usr/sbin:/usr/bin
+
+mount -t sysfs none /sys
+mount -t proc none /proc
+mount -t devtmpfs none /dev
+
+die() {
+    echo $1
+    /bin/bash
+}
+
+echo "Starting Factory Install"
+echo "Flash factory partition"
+flash-uboot --flash mtd --spl SPL --spl-offset 0x400 --uboot u-boot-ivt --gpio 134 --write || die "ERROR - failed flashing uboot"
+
+echo "Setting fuses"
+imx-fuse-imx --fuse CFG5_DIR_BT_DIS --commit || die "ERROR - failed fusing"
+imx-fuse-imx --fuse CFG5_BT_FUSE_SEL --commit || die "ERROR - failed fusing"
+imx-fuse-imx --fuse CFG4_BOOT_CFG1_SPI --commit || die "ERROR - failed fusing"
+imx-fuse-imx --fuse CFG4_BOOT_CFG4_SPI_SPI2 --commit || die "ERROR - failed fusing"
+
+echo "=========================================="
+echo "                  SUCCESS"
+echo "=========================================="
+
+/bin/bash
