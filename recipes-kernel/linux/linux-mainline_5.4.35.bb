@@ -10,7 +10,7 @@ DEPENDS += "lzop-native bc-native"
 
 BRANCH = "linux-5.4.y"
 LOCALVERSION = "+dr-1.0"
-SRCREV = "462afcd6e7ea94a7027a96a3bb12d0140b0b4216"
+SRCREV = "0c418786cb3aa175823f0172d939679df9ab9a54"
 SRC_URI = " \
 	git://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable.git;branch=${BRANCH} \
 	file://defconfig \
