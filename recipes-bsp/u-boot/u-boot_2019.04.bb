@@ -41,6 +41,12 @@ do_install_append_vec6200-factory() {
 	done
 }
 
+do_deploy_append_vec6200-factory() {
+	for f in ${B}/imx6_usb/*; do
+		install -m 0644 ${f} ${DEPLOYDIR}/;
+	done
+}
+
 IMX6_USB_DIR = "${B}/imx6_usb"
 IMX6_USB_RAW_VID = "0x15a2"
 IMX6_USB_RAW_PID = "0x0061"
