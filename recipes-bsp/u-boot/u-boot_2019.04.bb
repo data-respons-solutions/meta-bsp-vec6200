@@ -6,8 +6,8 @@ inherit fsl-u-boot-localversion ${@oe.utils.conditional('MACHINE','vec6200-facto
 DEPENDS += "bc-native dtc-native"
 
 SRCREV_FORMAT = "uboot_common_system"
-SRCREV_uboot = "3c99166441bf3ea325af2da83cfe65430b49c066"
-SRCREV_common = "5d2db1b490ab096b31c5d409a916e510c309c4ac"
+SRCREV_uboot = "d22b47194d609368ccf850fa28ce3e1a6feb34ed"
+SRCREV_common = "52a49ac6dbb787a8a1fb32177c8f6071ba9c2ef7"
 SRCREV_system = "afd9103e7ccb94c00a2b840aa48feb6a500c2195"
 
 SRC_URI = "git://git.denx.de/u-boot.git;name=uboot \

@@ -17,7 +17,7 @@ index 0e2ffdb87f..b8bd08b0f2 100644
  	imx6qp-sabreauto.dtb \
 -	imx6qp-sabresd.dtb
 +	imx6qp-sabresd.dtb \
-+	vec6200-revA.dtb
++	vec6200-dl-revA.dtb
  
  dtb-$(CONFIG_MX6SL) += imx6sl-evk.dtb
  
