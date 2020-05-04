@@ -6,7 +6,7 @@ inherit devicetree
 
 COMPATIBLE_MACHINE = "(vec6200|vec6200-factory)"
 
-SRCREV ?= "d22b47194d609368ccf850fa28ce3e1a6feb34ed"
+SRCREV ?= "45b553124de6b246b26f5607413c841d0fe69b14"
 SRC_URI = "git://git@github.com/data-respons-solutions/uboot-vec6200.git;protocol=ssh;branch=master;"
 
 S = "${WORKDIR}/git/arch/arm/dts"
