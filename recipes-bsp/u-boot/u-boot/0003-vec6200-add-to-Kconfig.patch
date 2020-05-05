@@ -1,21 +1,21 @@
-From 7c553024f7767b6265cc1b84a1c299d7be1b2987 Mon Sep 17 00:00:00 2001
+From 9b101cb6cdac30b1dd17cc54df3380c88239fd67 Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Mikko=20Salom=C3=A4ki?= <ms@datarespons.se>
-Date: Tue, 31 Mar 2020 07:52:44 +0200
-Subject: [PATCH] vec6200: add to Kconfig
+Date: Tue, 5 May 2020 14:37:04 +0000
+Subject: [PATCH] vec6200-add-to-Kconfig
 
 ---
- arch/arm/mach-imx/mx6/Kconfig | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+ arch/arm/mach-imx/mx6/Kconfig | 11 +++++++++++
+ 1 file changed, 11 insertions(+)
 
 diff --git a/arch/arm/mach-imx/mx6/Kconfig b/arch/arm/mach-imx/mx6/Kconfig
-index e782859b1e..0051db595a 100644
+index f9f576d403..1f7bde22b0 100644
 --- a/arch/arm/mach-imx/mx6/Kconfig
 +++ b/arch/arm/mach-imx/mx6/Kconfig
-@@ -529,6 +529,15 @@ config TARGET_ZC5601
- 	select DM_THERMAL
- 	select SUPPORT_SPL
- 	imply CMD_DM
-+	
+@@ -670,6 +670,16 @@ config TARGET_BRPPT2
+           Support
+           B&R BRPPT2 platform
+           based on Freescale's iMX6 SoC
++          
 +config TARGET_VEC6200
 +	bool "vec6200"
 +	select MX6QDL
@@ -24,13 +24,14 @@ index e782859b1e..0051db595a 100644
 +	select SUPPORT_SPL
 +	select DM
 +	select DM_THERMAL
- 
++
  endchoice
  
-@@ -586,5 +595,6 @@ source "board/udoo/Kconfig"
- source "board/udoo/neo/Kconfig"
+ config SYS_SOC
+@@ -729,5 +739,6 @@ source "board/udoo/neo/Kconfig"
  source "board/wandboard/Kconfig"
  source "board/warp/Kconfig"
+ source "board/BuR/brppt2/Kconfig"
 +source "board/datarespons/vec6200/Kconfig"
  
  endif

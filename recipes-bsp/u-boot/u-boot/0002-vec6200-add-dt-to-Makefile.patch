@@ -1,23 +1,21 @@
-From 583223729834cfc179d2da3ef3932d3dc07b11dc Mon Sep 17 00:00:00 2001
+From 6f9a8fa6f1af685f2cbbfcc281c5641f40c52638 Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Mikko=20Salom=C3=A4ki?= <ms@datarespons.se>
-Date: Tue, 31 Mar 2020 07:52:26 +0200
-Subject: [PATCH] vec6200: add dt to Makefile
+Date: Tue, 5 May 2020 14:36:39 +0000
+Subject: [PATCH] vec6200-add-dt-to-Makefile
 
 ---
- arch/arm/dts/Makefile | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+ arch/arm/dts/Makefile | 1 +
+ 1 file changed, 1 insertion(+)
 
 diff --git a/arch/arm/dts/Makefile b/arch/arm/dts/Makefile
-index 0e2ffdb87f..b8bd08b0f2 100644
+index 820ee9733a..01e07b16c2 100644
 --- a/arch/arm/dts/Makefile
 +++ b/arch/arm/dts/Makefile
-@@ -513,7 +513,8 @@ dtb-$(CONFIG_MX6QDL) += \
- 	imx6dl-sabreauto.dtb \
- 	imx6dl-sabresd.dtb \
+@@ -658,6 +658,7 @@ dtb-y += \
  	imx6qp-sabreauto.dtb \
--	imx6qp-sabresd.dtb
-+	imx6qp-sabresd.dtb \
-+	vec6200-dl-revA.dtb
+ 	imx6qp-sabresd.dtb \
+ 	imx6qp-wandboard-revd1.dtb \
++	vec6200-dl-revA.dtb \
  
- dtb-$(CONFIG_MX6SL) += imx6sl-evk.dtb
+ endif
  
