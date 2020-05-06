@@ -9,7 +9,7 @@ DEPENDS += "bc-native dtc-native"
 
 SRCREV_FORMAT = "uboot_common_system"
 SRCREV_uboot = "36fec02b1f90b92cf51ec531564f9284eae27ab4"
-SRCREV_common = "ca50b70651cfd52e17beb6a8fd1a1eabee603de5"
+SRCREV_common = "1a562e735f4cb5260e75e2f477cc683f9d9fb152"
 SRCREV_system = "bc255d202731497e5ab0753bae3b830b5a40c451"
 
 SRC_URI = "git://git.denx.de/u-boot.git;name=uboot \
@@ -20,7 +20,7 @@ SRC_URI = "git://git.denx.de/u-boot.git;name=uboot \
            file://0003-vec6200-add-to-Kconfig.patch \
            "
 
-LOCALVERSION = "+dr-0.2"
+LOCALVERSION = "+dr-0.3"
 
 EXTRA_OEMAKE += 'V=0'
 
