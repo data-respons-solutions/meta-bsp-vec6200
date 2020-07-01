@@ -21,9 +21,9 @@ flash-uboot --flash mtd --spl /boot/SPL --spl-offset 0x400 --uboot /boot/u-boot-
 
 echo "Setting fuses"
 flash-fuse-imx --fuse CFG5_DIR_BT_DIS --commit || die "ERROR - failed fusing"
-flash-fuse-imx --fuse CFG5_BT_FUSE_SEL --commit || die "ERROR - failed fusing"
-flash-fuse-imx --fuse CFG4_BOOT_CFG1_SPI --commit || die "ERROR - failed fusing"
-flash-fuse-imx --fuse CFG4_BOOT_CFG4_SPI_SPI2 --commit || die "ERROR - failed fusing"
+#flash-fuse-imx --fuse CFG5_BT_FUSE_SEL --commit || die "ERROR - failed fusing"
+#flash-fuse-imx --fuse CFG4_BOOT_CFG1_SPI --commit || die "ERROR - failed fusing"
+#flash-fuse-imx --fuse CFG4_BOOT_CFG4_SPI_SPI2 --commit || die "ERROR - failed fusing"
 
 echo "=========================================="
 echo "                  SUCCESS"
