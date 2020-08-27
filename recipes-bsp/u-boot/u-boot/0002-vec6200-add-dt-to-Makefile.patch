@@ -15,7 +15,7 @@ index 820ee9733a..01e07b16c2 100644
  	imx6qp-sabreauto.dtb \
  	imx6qp-sabresd.dtb \
  	imx6qp-wandboard-revd1.dtb \
-+	vec6200-dl-revA.dtb \
++	vec6200-q-revB.dtb \
  
  endif
  

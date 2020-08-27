@@ -10,7 +10,7 @@ DEPENDS += "bc-native dtc-native"
 SRCREV_FORMAT = "uboot_common_system"
 SRCREV_uboot = "36fec02b1f90b92cf51ec531564f9284eae27ab4"
 SRCREV_common = "1a562e735f4cb5260e75e2f477cc683f9d9fb152"
-SRCREV_system = "bc255d202731497e5ab0753bae3b830b5a40c451"
+SRCREV_system = "5462aa67f0f206c2388d66f8de41c818eafdc111"
 
 SRC_URI = "git://git.denx.de/u-boot.git;name=uboot \
            git://git@github.com/data-respons-solutions/uboot-vec6200.git;branch=master;protocol=ssh;destsuffix=git/board/datarespons/vec6200;name=system \
@@ -20,7 +20,7 @@ SRC_URI = "git://git.denx.de/u-boot.git;name=uboot \
            file://0003-vec6200-add-to-Kconfig.patch \
            "
 
-LOCALVERSION = "+dr-0.3"
+LOCALVERSION = "+dr-0.4"
 
 EXTRA_OEMAKE += 'V=0'
 
@@ -61,7 +61,7 @@ IMX6_USB_INITRD_LOADADDR = "0x12C00000"
 ### TEMPORARY WORKAROUND FOR REV A
 inherit fsl-u-boot-localversion ${@oe.utils.conditional('IS_FACTORY','0','imx6_usb','',d)}
 
-IMX6_USB_DTB_vec6200 = "vec6200-dl-revA.dtb"
+IMX6_USB_DTB_vec6200 = "vec6200-q-revB.dtb"
 IMX6_USB_INITRD_vec6200 = "datarespons-image-initramfs-${MACHINE}.${INITRAMFS_FSTYPES}"
 
 python () {

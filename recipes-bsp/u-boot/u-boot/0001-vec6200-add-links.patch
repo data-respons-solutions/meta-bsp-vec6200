@@ -4,33 +4,33 @@ Date: Tue, 31 Mar 2020 07:51:57 +0200
 Subject: [PATCH] vec6200: add links
 
 ---
- arch/arm/dts/vec6200-dl-revA.dts | 1 +
- arch/arm/dts/vec6200-common-revA.dtsi | 1 +
+ arch/arm/dts/vec6200-q-revB.dts | 1 +
+ arch/arm/dts/vec6200-common-revB.dtsi | 1 +
  configs/vec6200_defconfig     | 1 +
  include/configs/datarespons.h | 1 +
  include/configs/vec6200.h     | 1 +
  4 files changed, 4 insertions(+)
- create mode 120000 arch/arm/dts/vec6200-dl-revA.dts
- create mode 120000 arch/arm/dts/vec6200-common-revA.dtsi
+ create mode 120000 arch/arm/dts/vec6200-q-revB.dts
+ create mode 120000 arch/arm/dts/vec6200-common-revB.dtsi
  create mode 120000 configs/vec6200_defconfig
  create mode 120000 include/configs/datarespons.h
  create mode 120000 include/configs/vec6200.h
 
-diff --git a/arch/arm/dts/vec6200-dl-revA.dts b/arch/arm/dts/vec6200-dl-revA.dts
+diff --git a/arch/arm/dts/vec6200-q-revB.dts b/arch/arm/dts/vec6200-q-revB.dts
 new file mode 120000
 index 0000000000..7fb9bf2410
 --- /dev/null
-+++ b/arch/arm/dts/vec6200-dl-revA.dts
++++ b/arch/arm/dts/vec6200-q-revB.dts
 @@ -0,0 +1 @@
-+../../../board/datarespons/vec6200/arch/arm/dts/vec6200-dl-revA.dts
++../../../board/datarespons/vec6200/arch/arm/dts/vec6200-q-revB.dts
 \ No newline at end of file
-diff --git a/arch/arm/dts/vec6200-common-revA.dtsi b/arch/arm/dts/vec6200-common-revA.dtsi
+diff --git a/arch/arm/dts/vec6200-common-revB.dtsi b/arch/arm/dts/vec6200-common-revB.dtsi
 new file mode 120000
 index 0000000000..7fb9bf2410
 --- /dev/null
-+++ b/arch/arm/dts/vec6200-common-revA.dtsi
++++ b/arch/arm/dts/vec6200-common-revB.dtsi
 @@ -0,0 +1 @@
-+../../../board/datarespons/vec6200/arch/arm/dts/vec6200-common-revA.dtsi
++../../../board/datarespons/vec6200/arch/arm/dts/vec6200-common-revB.dtsi
 \ No newline at end of file
 diff --git a/configs/vec6200_defconfig b/configs/vec6200_defconfig
 new file mode 120000
