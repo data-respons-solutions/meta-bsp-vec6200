@@ -1,0 +1,34 @@
+#!/bin/sh
+
+die() {
+    echo $1
+    /bin/sh
+}
+
+modprobe imx-sdma
+modprobe fsl_otp
+for i in $(seq 3); do
+	modprobe user-gpios
+	if [ $? -eq 0 ]; then
+		echo "Successully loaded user-gpios"
+		break
+	else
+		echo "Failed loading user-gpios"
+		sleep 1
+	fi
+done
+
+echo "Starting Factory Install"
+echo "Flash factory partition"
+flash-uboot --flash mtd --spl /boot/SPL --spl-offset 0x400 --uboot /boot/u-boot-ivt.img --gpio 133 --write || die "ERROR - failed flashing uboot"
+
+echo "Setting fuses"
+flash-fuse-imx --fuse CFG5_DIR_BT_DIS --commit || die "ERROR - failed fusing"
+flash-fuse-imx --fuse CFG4_SERIALROM --commit || die "ERROR - failed fusing"
+flash-fuse-imx --fuse CFG4_SERIALROM_SPI3 --commit || die "ERROR - failed fusing"
+flash-fuse-imx --fuse CFG4_SERIALROM_SPI_ADDRESSING_24BIT --commit || die "ERROR - failed fusing"
+flash-fuse-imx --fuse CFG5_BT_FUSE_SEL --commit || die "ERROR - failed fusing"
+
+echo "=========================================="
+echo "                  SUCCESS"
+echo "=========================================="
