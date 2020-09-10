@@ -57,31 +57,6 @@ IMX6_USB_DTB_LOADADDR = "0x11000000"
 IMX6_USB_ZIMAGE_LOADADDR = "0x12000000"
 IMX6_USB_INITRD_LOADADDR = "0x12C00000"
 
-
-### TEMPORARY WORKAROUND FOR REV A
-inherit fsl-u-boot-localversion ${@oe.utils.conditional('IS_FACTORY','0','imx6_usb','',d)}
-
-IMX6_USB_DTB_vec6200 = "vec6200-q-revB.dtb"
-IMX6_USB_INITRD_vec6200 = "datarespons-image-initramfs-${MACHINE}.${INITRAMFS_FSTYPES}"
-
-python () {
-    if d.getVar('IS_FACTORY', True) == '0':
-        bb.build.addtask('do_imx6_usb', 'do_install', 'do_compile', d)
-}
-
-do_install_append_vec6200() {
-	for f in ${B}/imx6_usb/*; do
-		install -m 0644 ${f} ${D}/boot/;
-	done
-}
-
-do_deploy_append_vec6200() {
-	for f in ${B}/imx6_usb/*; do
-		install -m 0644 ${f} ${DEPLOYDIR}/;
-	done
-}
-### END OF WORKAROUND
-
 FILES_${PN}_append_factory += "/boot"
 
 UBOOT_CONFIG = "production"
