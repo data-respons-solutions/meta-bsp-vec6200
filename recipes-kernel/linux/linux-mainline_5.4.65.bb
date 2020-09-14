@@ -11,7 +11,7 @@ RDEPENDS_${PN} += "wireless-regdb"
 
 BRANCH = "linux-5.4.y"
 LOCALVERSION = "+dr-1.0"
-SRCREV = "0c418786cb3aa175823f0172d939679df9ab9a54"
+SRCREV = "6c3d34dea2fc9b02c4419af4e368e8b73f566c88"
 SRC_URI = " \
 	git://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable.git;branch=${BRANCH} \
 	file://defconfig \
