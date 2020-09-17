@@ -1,17 +1,17 @@
 #!/bin/sh
 
 ANI1_GPIO="/sys/class/gpio/gpio15/value"
-ANI1_VOLTAGE_IIODEV="/sys/bus/iio/devices/iio:device2/in_voltage2_raw"
-ANI1_CURRENT_IIODEV="/sys/bus/iio/devices/iio:device2/in_voltage0_raw"
+ANI1_VOLTAGE_CHANNEL="voltage2"
+ANI1_CURRENT_CHANNEL="voltage0"
 ANI2_GPIO="/sys/class/gpio/gpio14/value"
-ANI2_VOLTAGE_IIODEV="/sys/bus/iio/devices/iio:device2/in_voltage3_raw"
-ANI2_CURRENT_IIODEV="/sys/bus/iio/devices/iio:device2/in_voltage1_raw"
+ANI2_VOLTAGE_CHANNEL="voltage3"
+ANI2_CURRENT_CHANNEL="voltage1"
 ANI3_GPIO="/sys/class/gpio/gpio13/value"
-ANI3_VOLTAGE_IIODEV="/sys/bus/iio/devices/iio:device2/in_voltage6_raw"
-ANI3_CURRENT_IIODEV="/sys/bus/iio/devices/iio:device2/in_voltage4_raw"
+ANI3_VOLTAGE_CHANNEL="voltage6"
+ANI3_CURRENT_CHANNEL="voltage4"
 ANI4_GPIO="/sys/class/gpio/gpio12/value"
-ANI4_VOLTAGE_IIODEV="/sys/bus/iio/devices/iio:device2/in_voltage7_raw"
-ANI4_CURRENT_IIODEV="/sys/bus/iio/devices/iio:device2/in_voltage5_raw"
+ANI4_VOLTAGE_CHANNEL="voltage7"
+ANI4_CURRENT_CHANNEL="voltage5"
 
 
 die() {
@@ -43,16 +43,16 @@ fi
 
 read_voltage() {
 	gpio="${1}"
-	iiodev="${2}"
+	channel="${2}"
 	echo 0 >"${gpio}" || die "Failed setting mode select gpio"
-	echo "($(cat ${iiodev}) * 2500) / (4096 * 43/793)" | bc || die "Failed reading input"
+	echo "($(iio_attr -q -c mcp3208 ${channel} raw) * 2500) / (4096 * 43/793)" | bc || die "Failed reading input"
 }
 
 read_current() {
 	gpio="${1}"
-	iiodev="${2}"
+	channel="${2}"
 	echo 1 >"${gpio}" || die "Failed setting mode select gpio"
-	echo "($(cat ${iiodev}) * 2500) / 409.6" | bc || die "Failed reading input"
+	echo "($(iio_attr -q -c mcp3208 ${channel} raw) * 2500) / 409.6" | bc || die "Failed reading input"
 }
 
 channel="${1}"
@@ -69,30 +69,30 @@ fi
 case "${channel}" in
 	ani1)
 		if [ "${mode}" = "voltage" ]; then
-			read_voltage "${ANI1_GPIO}" "${ANI1_VOLTAGE_IIODEV}"
+			read_voltage "${ANI1_GPIO}" "${ANI1_VOLTAGE_CHANNEL}"
 		else
-			read_current "${ANI1_GPIO}" "${ANI1_CURRENT_IIODEV}"
+			read_current "${ANI1_GPIO}" "${ANI1_CURRENT_CHANNEL}"
 		fi
 		;;
 	ani2)
 		if [ "${mode}" = "voltage" ]; then
-			read_voltage "${ANI2_GPIO}" "${ANI2_VOLTAGE_IIODEV}"
+			read_voltage "${ANI2_GPIO}" "${ANI2_VOLTAGE_CHANNEL}"
 		else
-			read_current "${ANI2_GPIO}" "${ANI2_CURRENT_IIODEV}"
+			read_current "${ANI2_GPIO}" "${ANI2_CURRENT_CHANNEL}"
 		fi
 		;;
 	ani3)
 		if [ "${mode}" = "voltage" ]; then
-			read_voltage "${ANI3_GPIO}" "${ANI3_VOLTAGE_IIODEV}"
+			read_voltage "${ANI3_GPIO}" "${ANI3_VOLTAGE_CHANNEL}"
 		else
-			read_current "${ANI3_GPIO}" "${ANI3_CURRENT_IIODEV}"
+			read_current "${ANI3_GPIO}" "${ANI3_CURRENT_CHANNEL}"
 		fi
 		;;
 	ani4)
 		if [ "${mode}" = "voltage" ]; then
-			read_voltage "${ANI4_GPIO}" "${ANI4_VOLTAGE_IIODEV}"
+			read_voltage "${ANI4_GPIO}" "${ANI4_VOLTAGE_CHANNEL}"
 		else
-			read_current "${ANI4_GPIO}" "${ANI4_CURRENT_IIODEV}"
+			read_current "${ANI4_GPIO}" "${ANI4_CURRENT_CHANNEL}"
 		fi
 		;;
 	*)

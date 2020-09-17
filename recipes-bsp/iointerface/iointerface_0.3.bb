@@ -7,7 +7,7 @@ SRC_URI += " \
 	file://dioctl.sh \
 "
 
-RDEPENDS_${PN} += "bc"
+RDEPENDS_${PN} += "bc libiio-tests"
 
 do_install () {
     install -d ${D}${bindir}
