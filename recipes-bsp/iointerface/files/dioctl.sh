@@ -128,16 +128,17 @@ case "${dio}" in
 		echo "${3}" >/sys/class/gpio/gpio138/value
 		;;
 	do1)
-		echo "${3}" >/sys/class/gpio/gpio300/value
+		die "do1 not unsupported"
 		;;
 	do2)
-		echo "${3}" >/sys/class/gpio/gpio301/value
+		die "do2 not unsupported"
 		;;
 	do3)
-		die "do3 not unsupported"
+		echo "${3}" >/sys/class/gpio/gpio300/value
 		;;
 	do4)
-		die "do4 not unsupported"
+		echo "${3}" >/sys/class/gpio/gpio301/value
+
 		;;
 	*)
 		print_usage "$(basename ${0})"
