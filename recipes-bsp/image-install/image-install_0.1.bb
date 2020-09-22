@@ -6,7 +6,7 @@ SRC_URI += " \
 	file://image-install.sh \
 "
 
-RDEPENDS_${PN} += "blockdev-init nvram status-led"
+RDEPENDS_${PN} += "blockdev-init nvram iointerface"
 
 do_install () {
     install -d ${D}${sbindir}

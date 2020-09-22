@@ -5,6 +5,7 @@ LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/MIT;md5=0835ade698e0bcf8506ecda
 SRC_URI += " \
 	file://anctl.sh \
 	file://dioctl.sh \
+	file://status-led.sh \
 "
 
 RDEPENDS_${PN} += "bc libiio-tests"
@@ -13,4 +14,5 @@ do_install () {
     install -d ${D}${bindir}
     install -m 0755 ${WORKDIR}/anctl.sh ${D}${bindir}/anctl
     install -m 0755 ${WORKDIR}/dioctl.sh ${D}${bindir}/dioctl
+    install -m 0755 ${WORKDIR}/status-led.sh ${D}${bindir}/status-led
 }

@@ -83,49 +83,48 @@ if [ "${found}" = "false" ]; then
 	die "Invalid argument"
 fi
 
-
 case "${dio}" in
 	di1)
-		cat /sys/class/gpio/gpio1/value
+		cat /sys/class/gpio/gpio1/value || die "Failed reading input"
 		;;
 	di2)
-		cat /sys/class/gpio/gpio2/value
+		cat /sys/class/gpio/gpio2/value || die "Failed reading input"
 		;;
 	di3)
-		cat /sys/class/gpio/gpio5/value
+		cat /sys/class/gpio/gpio5/value || die "Failed reading input"
 		;;
 	di4)
-		cat /sys/class/gpio/gpio6/value
+		cat /sys/class/gpio/gpio6/value || die "Failed reading input"
 		;;
 	di5)
-		cat /sys/class/gpio/gpio147/value
+		cat /sys/class/gpio/gpio147/value || die "Failed reading input"
 		;;
 	di6)
-		cat /sys/class/gpio/gpio146/value
+		cat /sys/class/gpio/gpio146/value || die "Failed reading input"
 		;;
 	aud1)
-		echo "${3}" >/sys/class/gpio/gpio139/value
+		echo "${3}" >/sys/class/gpio/gpio139/value || die "Failed setting output"
 		;;
 	aud2)
-		echo "${3}" >/sys/class/gpio/gpio140/value
+		echo "${3}" >/sys/class/gpio/gpio140/value || die "Failed setting output"
 		;;
 	aud3)
-		echo "${3}" >/sys/class/gpio/gpio141/value
+		echo "${3}" >/sys/class/gpio/gpio141/value || die "Failed setting output"
 		;;
 	do5)
-		echo "${3}" >/sys/class/gpio/gpio122/value
+		echo "${3}" >/sys/class/gpio/gpio122/value || die "Failed setting output"
 		;;
 	do6)
-		echo "${3}" >/sys/class/gpio/gpio123/value
+		echo "${3}" >/sys/class/gpio/gpio123/value || die "Failed setting output"
 		;;
 	do7)
-		echo "${3}" >/sys/class/gpio/gpio124/value
+		echo "${3}" >/sys/class/gpio/gpio124/value || die "Failed setting output"
 		;;
 	do8)
-		echo "${3}" >/sys/class/gpio/gpio125/value
+		echo "${3}" >/sys/class/gpio/gpio125/value || die "Failed setting output"
 		;;
 	do9)
-		echo "${3}" >/sys/class/gpio/gpio138/value
+		echo "${3}" >/sys/class/gpio/gpio138/value || die "Failed setting output"
 		;;
 	do1)
 		die "do1 not unsupported"
@@ -134,10 +133,10 @@ case "${dio}" in
 		die "do2 not unsupported"
 		;;
 	do3)
-		echo "${3}" >/sys/class/gpio/gpio300/value
+		echo "${3}" >/sys/class/gpio/gpio300/value || die "Failed setting output"
 		;;
 	do4)
-		echo "${3}" >/sys/class/gpio/gpio301/value
+		echo "${3}" >/sys/class/gpio/gpio301/value || die "Failed setting output"
 
 		;;
 	*)
