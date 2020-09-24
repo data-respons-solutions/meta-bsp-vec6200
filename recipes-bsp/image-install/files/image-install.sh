@@ -22,6 +22,8 @@ status-led green blink || die "Failed setting status LED"
 blockdev-init /dev/mmcblk1 \
 	rootfs1 ext4 1000 \
 	rootfs2 ext4 1000 \
+	app ext4 500 \
+	data ext4 500 \
 		|| die "Failed initializing blockdev"
 
 
