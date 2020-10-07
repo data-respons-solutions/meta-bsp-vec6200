@@ -1,0 +1,43 @@
+From b9667a0dbc6ea7f279f9fb1cb590dab213127cc7 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Mikko=20Salom=C3=A4ki?= <ms@datarespons.se>
+Date: Wed, 7 Oct 2020 15:24:05 +0200
+Subject: [PATCH] spi-imx initialize cs earlier
+
+cs were initialized after spi_bitbang_start() which probes the bus for some types of devices and loads their drivers.
+If multiple devices are initialized in spi_bitbang_start() then their cs are active at the same time causing collissions on the bus.
+---
+ drivers/spi/spi-imx.c | 14 +++++++-------
+ 1 file changed, 7 insertions(+), 7 deletions(-)
+
+diff --git a/drivers/spi/spi-imx.c b/drivers/spi/spi-imx.c
+index 09c9a1edb2c6..b90c7542f671 100644
+--- a/drivers/spi/spi-imx.c
++++ b/drivers/spi/spi-imx.c
+@@ -1726,13 +1726,6 @@ static int spi_imx_probe(struct platform_device *pdev)
+ 
+ 	spi_imx->devtype_data->intctrl(spi_imx, 0);
+ 
+-	master->dev.of_node = pdev->dev.of_node;
+-	ret = spi_bitbang_start(&spi_imx->bitbang);
+-	if (ret) {
+-		dev_err(&pdev->dev, "bitbang start failed with %d\n", ret);
+-		goto out_clk_put;
+-	}
+-
+ 	/* Request GPIO CS lines, if any */
+ 	if (!spi_imx->slave_mode && master->cs_gpios) {
+ 		for (i = 0; i < master->num_chipselect; i++) {
+@@ -1750,6 +1743,13 @@ static int spi_imx_probe(struct platform_device *pdev)
+ 		}
+ 	}
+ 
++	master->dev.of_node = pdev->dev.of_node;
++	ret = spi_bitbang_start(&spi_imx->bitbang);
++	if (ret) {
++		dev_err(&pdev->dev, "bitbang start failed with %d\n", ret);
++		goto out_clk_put;
++	}
++
+ 	dev_info(&pdev->dev, "probed\n");
+ 
+ 	clk_disable(spi_imx->clk_ipg);
