@@ -1,43 +1,31 @@
-From b9667a0dbc6ea7f279f9fb1cb590dab213127cc7 Mon Sep 17 00:00:00 2001
+From aacae0acf881b5c2a18bc4e66acded28e3e61f11 Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Mikko=20Salom=C3=A4ki?= <ms@datarespons.se>
-Date: Wed, 7 Oct 2020 15:24:05 +0200
+Date: Mon, 12 Oct 2020 11:35:18 +0200
 Subject: [PATCH] spi-imx initialize cs earlier
 
 cs were initialized after spi_bitbang_start() which probes the bus for some types of devices and loads their drivers.
 If multiple devices are initialized in spi_bitbang_start() then their cs are active at the same time causing collissions on the bus.
 ---
- drivers/spi/spi-imx.c | 14 +++++++-------
- 1 file changed, 7 insertions(+), 7 deletions(-)
+ drivers/spi/spi.c | 8 +++++++-
+ 1 file changed, 7 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/spi/spi-imx.c b/drivers/spi/spi-imx.c
-index 09c9a1edb2c6..b90c7542f671 100644
---- a/drivers/spi/spi-imx.c
-+++ b/drivers/spi/spi-imx.c
-@@ -1726,13 +1726,6 @@ static int spi_imx_probe(struct platform_device *pdev)
+diff --git a/drivers/spi/spi.c b/drivers/spi/spi.c
+index 982753ac1bf6..ad7e1e97bd02 100644
+--- a/drivers/spi/spi.c
++++ b/drivers/spi/spi.c
+@@ -2285,8 +2285,14 @@ static int of_spi_get_gpio_numbers(struct spi_controller *ctlr)
+ 	for (i = 0; i < ctlr->num_chipselect; i++)
+ 		cs[i] = -ENOENT;
  
- 	spi_imx->devtype_data->intctrl(spi_imx, 0);
- 
--	master->dev.of_node = pdev->dev.of_node;
--	ret = spi_bitbang_start(&spi_imx->bitbang);
--	if (ret) {
--		dev_err(&pdev->dev, "bitbang start failed with %d\n", ret);
--		goto out_clk_put;
--	}
--
- 	/* Request GPIO CS lines, if any */
- 	if (!spi_imx->slave_mode && master->cs_gpios) {
- 		for (i = 0; i < master->num_chipselect; i++) {
-@@ -1750,6 +1743,13 @@ static int spi_imx_probe(struct platform_device *pdev)
- 		}
- 	}
- 
-+	master->dev.of_node = pdev->dev.of_node;
-+	ret = spi_bitbang_start(&spi_imx->bitbang);
-+	if (ret) {
-+		dev_err(&pdev->dev, "bitbang start failed with %d\n", ret);
-+		goto out_clk_put;
+-	for (i = 0; i < nb; i++)
++	for (i = 0; i < nb; i++) {
+ 		cs[i] = of_get_named_gpio(np, "cs-gpios", i);
++		/* All our board cs are active low */
++		int ret = gpio_direction_output(cs[i], 1);
++		if (ret) {
++			dev_err(&ctlr->dev, "Can't set CS GPIO %d\n", cs[i]);
++		}
 +	}
-+
- 	dev_info(&pdev->dev, "probed\n");
  
- 	clk_disable(spi_imx->clk_ipg);
+ 	return 0;
+ }
