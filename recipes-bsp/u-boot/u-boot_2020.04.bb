@@ -10,7 +10,7 @@ DEPENDS += "bc-native dtc-native"
 SRCREV_FORMAT = "uboot_common_system"
 SRCREV_uboot = "36fec02b1f90b92cf51ec531564f9284eae27ab4"
 SRCREV_common = "1a562e735f4cb5260e75e2f477cc683f9d9fb152"
-SRCREV_system = "90ccacaf7c837678b7d925af40479300df9b873e"
+SRCREV_system = "899ebd907cbe81fdbf66467bc36e248615e2bfe9"
 
 SRC_URI = "git://git.denx.de/u-boot.git;name=uboot \
            git://git@github.com/data-respons-solutions/uboot-vec6200.git;branch=master;protocol=ssh;destsuffix=git/board/datarespons/vec6200;name=system \
@@ -20,7 +20,7 @@ SRC_URI = "git://git.denx.de/u-boot.git;name=uboot \
            file://0003-vec6200-add-to-Kconfig.patch \
            "
 
-LOCALVERSION = "+dr-0.6"
+LOCALVERSION = "+dr-0.7"
 
 EXTRA_OEMAKE += 'V=0'
 
@@ -53,9 +53,9 @@ IMX6_USB_RAW_VID = "0x15a2"
 IMX6_USB_RAW_PID = "0x0061 0x0054"
 IMX6_USB_PID = "0x2110"
 IMX6_USB_DTB = "${FACTORY_DEVICETREE}"
-IMX6_USB_DTB_LOADADDR = "0x11000000"
+IMX6_USB_DTB_LOADADDR = "0x20000000"
 IMX6_USB_ZIMAGE_LOADADDR = "0x12000000"
-IMX6_USB_INITRD_LOADADDR = "0x12C00000"
+IMX6_USB_INITRD_LOADADDR = "0x20400000"
 
 FILES_${PN}_append_factory += "/boot"
 
